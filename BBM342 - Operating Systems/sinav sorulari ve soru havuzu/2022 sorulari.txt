@@ -1,0 +1,23 @@
+1. sinav
+
+1. create a process (code sorusu)
+2. semaphore sorusu(eski sorularda 3 bolumlu olan soru)
+3. amdahl law
+4. CPU scheduler(algoritmalara gore processlerin zamanlamasi)
+5. ordinary pipe(eski sorularda yer alan q7  consumer & producer)
+6. diagram of process state(eski sorularda var)
+
+2. sinav
+1. deadlock banker algorithm
+2. deadlock exist or not(Resource-Allocation Graph)
+3. Effective Access Time in pages with TLB
+4. Virtual mem fifo optimal lru
+5. page address translation
+
+Final
+1. IO first middle end
+2. RMS EDF
+3. EAT
+4. semaphore & thread
+5. LRU
+6. Test sorulari

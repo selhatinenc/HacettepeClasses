@@ -1,0 +1,120 @@
+V-1 : Temel Kavramlar
+
+Regresyon problemi : Bağımlı değişkeni(hedef) "sayısal" olan probleme "regresyon problemi" denir.
+
+Sınıflandırma problemi : Bağımlı değişken değeri "kategorik" (sayısal değil) (tahminlerin şiddeti var)
+
+Doğrusal regresyon: y = b + wx (w:eğim, b:eğim çizgisi yükseklik sabiti)
+
+Kategorik değişken: 0-1 ; Erkek-Kadın; 
+
+*********************************************************************
+
+V-2 : Değişken Türleri
+
+-Sayısal (kesikli,sürekli)
+-Kategorik (nominal ordinal)
+-Bağımlı Değişken : hedef (target,dependent,output,response)
+-Bağımsız Değişken : hedef tahminini oluşturur (feature, independent, input, column, predictor, explanatory)
+
+churn: müşterinin markayı terk etmesi
+
+*********************************************************************
+
+V-3 : Öğrenme türleri
+
+1 - Denetimli, gözetimli (supervised) : üzerinde en çok çalışılandır. veri setinde "labellar" vardır. problem içinde bir bağımlı değişken(hedef) vardır. Bağımlı değişken kategorik veya sayısal olabilir. Bağımlı ve bağımsız değişkenler arasındaki ilişki öğreniliyor olunur. 
+
+ör: E-posta spam filtreleme: E-postaların spam veya önemli olduğunu belirlemek için e-posta başlıkları ve içeriği gibi veriler kullanılır.
+Görüntü sınıflandırma: Resimler ve etiketler kullanılarak, bir algoritma resimlerin içeriğini tanımayı öğrenebilir.
+
+2 - Denetimsiz(unsupervised) : Bağımlı değişken yoktur, Veri seti üzerinde benzerliklere göre segmentasyon(kümeleme) yapılabilir. Model, veriler arasındaki ilişkileri otomatik olarak keşfeder. 
+
+ör: Kümeleme (Clustering): Benzer özelliklere sahip veri noktalarını gruplamak için kullanılır. Örneğin, müşterileri segmentlere ayırmak için kullanılabilir.
+Boyut Azaltma (Dimensionality Reduction): Veri setini daha düşük boyutlu bir temsil haline getirir. Örneğin, temel bileşen analizi (PCA) görüntü işleme ve veri görselleştirmede kullanılabilir.
+
+3 - Pekiştirmeli(reinforcement) : deneme yanılma ile öğrenme. yanlış hareketinde cezalanması (çocuğun elini sobaya değdirince yanıp bir daha değmemesi)
+
+ör: Oyun oynamak: Bir oyun oynayan bir yapay zeka ajanı, oyunun puanını maksimize etmek için farklı hamleler yapmayı öğrenir.
+Otomasyon: Bir robot, bir görevi gerçek dünyada yerine getirmeyi öğrenir, örneğin, bir paketi taşımak veya bir odada gezinmek.
+
+Bu üç öğrenme türü, farklı problemler için kullanılır ve farklı veri türleri ve öğrenme hedefleri için uygundur. Denetimli öğrenme, etiketli verilerin bol olduğu durumlarda etkilidir, denetimsiz öğrenme ise verilerin etiketlenmesinin zor veya maliyetli olduğu durumlarda kullanışlıdır. Pekiştirmeli öğrenme ise özellikle karar alma ve kontrol problemlerini çözmek için uygundur.
+
+*********************************************************************
+
+V-4 : Problem Türleri
+
+Regresyon vs. Sınıflandırma (Bağımlı Değişken; Sayısal mı, Kategorik mi)
+
+*********************************************************************
+
+V-5 : Model Başarı Değerlendirme Yöntemleri:
+
+Tahminlerim ne kadar başarılı? (Gerçekleşen ile tahmin edilen arasındaki farklara bakıyoruz.)
+
+Regresyon Modellemelerinde Başarı Değerlendirme Metrikleri
+
+1 - MSE(Mean Squared Error) : Başarım ölçme yöntemlerinden birisidir. Kendisini optimize etmeye çalşıyoruz. Ne kadar küçükse o kadar iyidir.
+
+2 - RMSE(Root Mean Squared Error) : Bir başka değerlendirme yöntemi. MSE'nin kareköküdür.
+
+3 - MAE(Mean Absolute Error)
+
+Sınıflandırma Modellemelerinde Başarı Değerlendirme Metrikleri:
+
+1 - Accuracy: Doğru Tahmin / Toplam Sınıflandırılan Gözlem Sayısı. Ne kadar yüksekse o kadar iyidir
+
+2 - Başka metrikler de var.
+
+*********************************************************************
+
+V-6 : Model Doğrulama Yöntemleri ( Model Validation )
+
+1 - Holdout Yöntemi(Sınama Seti Yöntemi) : Veri setini eğitim ve test olarak ayırıyoruz. Gözlem sayısının çok olduğu durumlarda daha sağlıklıdır. (Test maliyeti düşüktür, ama gözlem sayısı az ise model validasyonu pek sağlıklı olmayabilir.)
+
+2 - K-Katlı Çapraz Doğrulama(K Fold Cross Validation) : K sayısına 5 diyelim. Veri seti 5'e bölünür(a-b-c-d-e), 4 parça ile (a-b-c-d) model eğitilir, 1 parça ile (e) model test edilir. Sonra bu işlem diğerleri için de yapılır. (b-c-d-e ile eğitim yapılıp a ile test edilmesi gibi...) Böylece 5 kere eğitim ve test yapılmış olur. (Test validasyonu artıyor ama maliyeti önceki yönteme göre yükseliyor.) En son bu testlerin hataları (veya başarı) ortalamaları bize Cross-Validation hatasını döner. (Gözlem sayısı az olduğunda Hold-out yöntemine göre daha sağlıklı)
+
+NOT: Üstteki iki yöntem beraber de kullanılabilir. Önce veriyi eğitim ve test diye 80-20 ayırırsın. Sonra eğitim verisi (80'lik kısım) üzerinde K-Fold yaparsın, iş bitince de başta ayırdığın 20'lik test verisiyle test yaparsın. (Böylece test verisini model eğitme işine hiç karıştırmamış oluruz.) Bir yarışma falan açıldığında test verisi yarışmayı yapanlarda oluyormuş, biz de eğitim verisine K-Fold yaparak en doğru sonucu almaya çalışıyormuşuz.
+
+*********************************************************************
+
+V-7 : Yanlılık-Varyans Değiş Tokuşu ( Bias-Variance Tradeoff )
+
+ss
+
+1 - Aşırı Öğrenme (Overfitting) : Yüksek Varyans var.(Değişkenlik fazla) Modelin veriyi öğrenmesidir, ezberlemesidir. (Veriyi değil; verideki yapıyı, örüntüyü, ilişkiyi öğrenmesi gerekiyordu.) Overfitting'e düştüğümüzü nasıl anlarız? Model karmaşıklığı(model complexity) ve tahmin hatasının(prediction error) birlikte değerlendirilmesi ile anlaşılır. Eğitim ve test setlerindeki tahmin hatası, model karmaşıklığı arttıkça birlikte düşerlerken bir noktada ayrışıyorlar, eğitim setindeki hatalar düşmeye devam ederken test setindeki hataların artmaya başladığı yerde overfitting gözlemlenmeye başlıyor.
+
+ss
+
+NOT:
+Model Karmaşıklığı (Model Complexity) nedir? : Bu sorunun cevabı doğrusal modellere(mesela doğrusal denkleme üstel terimler eklemek hassasiyeti artırır), ağaç modellere(dallanma sayısının artması hassasiyeti artırır.) veya sinir ağlarına(bazı parametrelerin eklenmesi veya iterasyon sayısının arttırılması vs) göre değişiklik gösterir. Genel olarak, daha detaylı tahminler yapılması için "Modelin hassaslaştırılmasıdır." Model karmaşıklığı, bir modelin veriye ne kadar iyi uyduğunu ve bu modelin ne kadar genelleştirilebilir olduğunu belirleyen bir kavramdır. Bir modelin karmaşıklığı, kullanılan parametre sayısı, işlevlerin karmaşıklığı ve diğer faktörlere bağlıdır. Daha karmaşık bir model, veriyi daha iyi uygun hale getirebilir, ancak aynı zamanda aşırı öğrenmeye yol açabilir ve yeni veriler üzerinde kötü sonuçlar verebilir.
+
+Tahmin Hatası (Prediction Error):
+Açıklama: Tahmin hatası, bir modelin gerçek değerle tahmin ettiği değer arasındaki farkı ifade eder. İdeali, tahmin hatalarının sıfır olmasıdır, yani model gerçek değerleri mükemmel bir şekilde tahmin eder. Ancak gerçek dünyada bu nadiren mümkün olur, bu nedenle hedef, tahmin hatalarını mümkün olduğunca düşürmektir.
+
+Aşırı öğrenme problemi nasıl çözülür(yaygın 3 yöntem): Birden çok yanıtı vardır. Veri setinin boyutu arttırılabilir veya feature selection yapılabilir veya eğitim-test verilerindeki paralel hata düşüşünün bitip ayrışmaya başladığı "optimum "nokta belirlenip, o noktada durulduğunda overfittingin önüne geçilmiş olur. (Ayrıca: Feature engineering, Veri setini train-test diye ayırmak, hiperparametre optimizasyonu cevapları da eklenebilir.)    
+
+2 - Eksik Öğrenme (Underfitting) : Yüksek Yanlılık(Bias) var. Genelleme kabiliyeti kazanamamış bir modeldir. Bazı gözlemlere daha yakın duruyor.
+
+3 - Doğru Model : Düşük Bias ve Düşük Varyans.
+
+örn: Bir sınavdan önce hoca çocuğa şu sorulara çalış gel demiş. Çocuk soruları ezberleyedebilir o soruların mantığını oturtarak da sınava gelebilir. Öğrenmek yerine ezberlemek sıkıntıdır. Aynı mantıktaki soruları yapamıyorsan öğrenememişsindir. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

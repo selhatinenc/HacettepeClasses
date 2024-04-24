@@ -1,0 +1,97 @@
+2 - DOĞRUSAL REGRESYON
+-----------------------------------------
+
+V-1 (Giriş)
+
+Amaç, bagimlİ ve bagimsiz degisken/degiskenler arasindaki iliskiyi
+dogrusal olarak modellemektir.
+
+y(i) = b + wx(i)
+
+y(i) = b+ w1x1 + w2x2 ........... wnxn (çok değişkenli)
+
+y : bağımlı
+x : bağımsız değişken
+w : ağırlık (öğrendim dediğimiz şeyler) (weight) 
+	pozitif ve neg olabilir(metrekare vs. apartman yaşı)
+	
+b  : sabit (bunu da öğreniyoruz)  (beta,bias)
+-----------------------------------------
+
+V-2 : Ağırlıkların Bulunması
+
+Nasıl: Gerçek degerler ile tahmin edilen degerler arasindaki farklarin karelerinin toplamini/ortalamasini minimum yapabilecek b ve w degerlerini bularak.
+
+"model" dediğimiz şey, grafikten geçen kırmızı doğru(ss-1)
+
+"doğruyu nereye koyacağımız" ile "sabiti ve ağırlığı nasıl bulacağımız" sorusu aynıdır. grafiktek tüm noktalar mutlu olmalıdır. bir fonk. tanımlanır. (değişik yöntemler var) birisi: 
+
+metrekare ve fiyat için bir "cost" fonksiyonu tanımlanır
+
+MSE: 
+tahmin edilen değer (b+wx(i)) ile gerçek değerin(y(i)) "farklarının karelerinin toplamı"
+
+TAHMİN:
+ör: 	w = 4 , b =210 , x=90(metrekare) için tahmin -> y = 210 + (4.90) = 570
+		w = 3 , b=120 ,  x=90(metrekare) için tahmin -> y = 120 + (3.90) = 390
+
+aynı metrekare için farklı değerler çıkıyor. (w ve b önemli)
+
+tablo ss(ss-3)
+
+-----------------------------------------
+
+V-3: Regresyon Modellerinde Başarı Değerlendirme Yöntemleri ( MSE, RMSE, MAE )
+
+ss-3 tekrar koy
+
+MSE: Min Squared Error
+
+-MSE'deki karenin varoluş sebebi negatif değerlerin ortalamayı sıfır yapmasını engellemek (ölçüm problemini ortadan kaldırmak)
+
+ss-4
+
+RMSE: ss-5
+MAE : ss-6
+
+bu üç teknik kullanıldıktan sonra "şu daha düşük çıktı o zaman bunu kullanayım" gibi bir yaklaşım söz konusu değil. o değeri düşürmek için "veri ön işleme, değişken mühendisliği" falan yapılır. 
+
+örneğin, mse'den gelen bir sonuca göre w ve b'yi bulmak istiyoruz. bunun için mse'yi optimize etmeliyiz.
+
+-----------------------------------------
+
+V-4 : Parametrelerin Tahmin Edilmesi ( Ağırlıkların Bulunması )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

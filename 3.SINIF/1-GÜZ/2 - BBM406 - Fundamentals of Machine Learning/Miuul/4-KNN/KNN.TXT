@@ -1,0 +1,120 @@
+1- K-En Yakın Komşu ( K-Nearest Neighbors )
+
+Gözlemlerin birbirine olan benzerlikleri üzerinden tahmin yapılır.
+"bana arkadaşını söyle, sana kim olduğunu söyleyeyim."
+
+Regresyon ve sınıflandırma problemleri için kullanılabilir.
+
+Öklid veya benzeri uzaklık hesabı ile her bir gözleme olan uzaklık hesaplanır. Bu gözleme en yakın olan k adet (k'yı biz belirleriz) gözlem birimi seçilir. kıyaslanır.
+
+ss-1(öklid formülü)
+
+regresyon ise en yakın k noktanın ortalaması, classification ise de label'ı alınır.
+
+var olan gözlemler:	X1=56 , X2=241 , Y = 100
+							X1=85 , X2=250 , Y = 120		
+yeni gözlem: 			X1=50 , X2=230 , Y=?
+
+hesaplama: ((50-56)'nın karesi + (230-241)'in karesi)'nin karekökü = 12.53
+				 ((50-85)'nın karesi + (230-250)'in karesi)'nin karekökü = 40.31
+
+				 k=1 alırsak, yeni gözleme yakın olan değer 12.53 olan olduğu için, yeni gözlemin Y'si 100 olur.
+
+				 k=3 alırsak, en yakın 3 değerin Y'lerinin "aritmetik veya ağırlıklı" ortalaması alınır.
+
+burada problem regresyon; eğer sınıflama olaydı da direkt o komşuların label'ı alınır.(yine öklid falan)
+
+*****************************************************************************************
+
+2- Keşifçi Veri Analizi ( EDA )
+
+problem : Bilgileri verilen bir hastanın, veri seti yardımıyla şeker hastası mı değil mi?
+
+ss-2 (aşamalar)
+ss-3 (eda kodları)
+
+*****************************************************************************************
+
+3 - Veri Ön İşleme ( Data Pre-Processing ve Feature Engineering )
+
+veriyi standartlaştırma, gerekirse yeni değişkenler türetme adımıdır.
+
+ss-4(standardizasyon kodu)
+
+*****************************************************************************************
+
+4- Modelleme (Modeling and Prediction)
+
+ss-5 model kodu 
+	(şimdilik komşuluk sayısı (k) parametresini atlıyoruz)
+	(45 sayısı keyfi, herhangi bir kişi)
+
+modeli fit etmek(eğitmek) ayrı bir süreçtir, modelle tahmin yapmak ayrı bir süreçtir.
+burada tek bir gözlem için tahmin yapıyoruz
+
+*****************************************************************************************
+
+5 - Model Başarı Değerlendirme (Model Evaulation)
+
+burada ise tüm gözlem birimleri için tahmin yapıp bunları bir yerde toplayacağız.
+
+ss-6 : kod (y_pred
+	(auc için y_prob kısmında "1" demek bizim odaklandığımız 1 sınıfı (0'da yazılabiliyor) )
+	
+ss-7 : hesaplama işlemi kodu ve printlenmesi.
+
+accuracy = başarılı sınıflandırma (1'lere "1" 0'lara "0" dediğimiz ve başarılı olduğumuz durumlar / tüm durumlar)
+Accuracy = (TP + TN) / (TP + TN + FP + FN)
+"dengesiz veri" problemi varsa başka metriklere de bakmak lazımdır.
+
+precision : 1 olarak tahmin ettiklerimizin başarısı.(0.79)
+recall : gerçekte 1 olanları; 1 olarak tahmin etme başarısı.(0.70)
+f1 score: precision ve recall'un harmonik ortalamasıdır.(0.74)
+
+yüzde 70'in üzeri başarılıdır. ama bu başarı artırılmalıdır.
+
+ss-8 :     roc eğrisi auc(area under curve) skoru hesaplama 
+			ve cross_validation yapma kodları(veri setiyle hem eğitim hem test yapmıştık,onu engellemek için) 
+			ve de ortalamaları göstermek
+				"5" verdik, 5 gruba ayırdı, 4'üyle eğitti, biriyle test etti.
+
+ilk durum sonundaki metriklerle ile sonradan cross validation yaptığımız durum sonucunda ciddi değişiklik oldu. demek ki eğittiğin veriyle test yaparsan yanlılık (bias) oluşuyor. son sonuçlar daha güvenli.
+
+güvenirliği artırmak için:
+1-veri seti boyutu artırılabilir.
+2-veri ön işleme işlemleri detaylandırılabilir
+3-özellik mühendisliği yapılabilir(yeni değişkenler türetmek)
+4-ilgili algoritma için optimizasyonlar yapılabilir. (knn'e özel mesela "komşuluk sayısı" hiperparametresi var.)
+
+*hiperparametre : kullanıcı tarafından tanımlanması gereken dışsal ve "veri setinden öğrenilemeyen" params.
+
+modelin parametrelerini öğrenmek için kod:
+
+knn_model.get_params()
+
+knn için farklı k değerleri vererek, en az hatayı almaya çalışıyoruz.
+
+
+*****************************************************************************************
+
+6 - Hiperparametre Optimizasyonu (Hyperparameter Optimization)
+
+modelimizde birden fazla hiperparametre varsa, onların kombinasyonlarına bakmalıyız. 
+
+ss-10: bu işi bizim için yapan kodlar
+	n-jobs eğer "-1" olursa işlemcileri tam kullanır
+	verbose: rapor istiyon mu demek (1:evet)
+
+ss-11 : en makul komşu sayısını öğrenme kodu
+
+*****************************************************************************************
+
+7 - Final modelleme
+
+ilk aşamada komşu sayımız 5'di(default), şimdi 17'lik yapcaz.  
+
+ss-12 : (en üst **'lı satırda 17'liği kullandık)
+
+
+	
+

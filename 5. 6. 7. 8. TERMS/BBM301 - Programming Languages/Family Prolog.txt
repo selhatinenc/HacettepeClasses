@@ -1,0 +1,98 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Facts
+
+% spouse(X,Y) is symmetric
+spouse(mary,edward).
+spouse(edward,mary).
+spouse(mike,terry).
+spouse(terry,mike).
+spouse(gail,phil).
+spouse(phil,gail).
+spouse(ethel,tom).
+spouse(tom,ethel).
+spouse(john,ann).
+spouse(ann,john).
+spouse(edith,larry).
+spouse(larry,edith).
+spouse(jean,frank).
+spouse(frank,jean).
+spouse(tina,tim).
+spouse(tim,tina).
+spouse(andrea,molly).
+spouse(molly,andrea).
+
+male(bill).
+male(edward).
+male(john).
+male(phil).
+male(chuck).
+male(tom).
+male(mike).
+male(barry).
+male(carl).
+male(dennis).
+male(larry).
+male(frank).
+male(jack).
+male(brian).
+male(tim).
+male(josh).
+male(zach).
+male(orem).
+male(harry).
+male(travis).
+
+% Parents are biological parents
+% parents(X,Y,Z) is read X has parents Y and Z.
+parents(john,bill,mary).
+parents(kelly,bill,mary).
+parents(gail,mary,edward).
+parents(ethel,mary,edward).
+parents(mike,mary,edward).
+parents(barry,john,ann).
+parents(carl,john,ann).
+parents(dennis,john,ann).
+parents(edith,john,ann).
+parents(jean,gail,phil).
+parents(jack,gail,phil).
+parents(brian,gail,phil).
+parents(maggie,grace,chuck).
+parents(tina,chuck,ethel).
+parents(edna,mike,terry).
+parents(molly,mike,terry).
+parents(nina,edith,larry).
+parents(orem,edith,larry).
+parents(harry,jean,frank).
+parents(tricia,tina,tim).
+parents(travis,tina,tim).
+parents(sarah,zach,molly).
+parents(cathy,josh,edna).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Rules
+
+
+female(X) :-
+     \+male(X).
+
+husband(X, Y) :-  
+    male(X),       
+    spouse(X, Y).
+
+father(X, Y) :-  
+    male(X),       
+    parents(Y,X,_);
+    parents(Y,_,X).
+
+grandparent(X, Z) :-  
+    parents(X, Y),  
+    parents(Y, Z).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tests
+test_female :-
+    female(mary),
+    female(edith),
+    female(travis),
+    female(zeus).

@@ -1,0 +1,7 @@
+iki tablom var
+
+ilkinin adı "kurslar" ve "id" isimli bir primary key'i var.
+
+ikincinin adı "hocalar" ve "courseId" isimli bir alanı var ve bu alan "kurslar" tablosundaki "id" isimli alan ile ilişkili.
+
+"foreign key" kavramını bu örnek üzerinden nasıl dile getiririz
